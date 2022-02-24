@@ -1,4 +1,5 @@
-package main.Viticulture.manager;
+package manager;
+
 
 public class Controller {
     public void init() {

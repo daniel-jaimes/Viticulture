@@ -1,4 +1,4 @@
-package main.Viticulture.main;
+package main;
 
 import manager.Controller;
 
