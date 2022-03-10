@@ -10,7 +10,7 @@ public class Field {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private int idField;
-    @ManyToOne
+    @OneToMany
     private List<Vid> vids;
     @Column(name = "id_cellar")
     private int idCellar;

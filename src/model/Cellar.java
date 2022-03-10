@@ -12,6 +12,6 @@ public class Cellar {
     private int idCellar;
     @Column(name = "name")
     private String name;
-    @ManyToOne
+    @OneToMany
     private List<Vid> vids;
 }
