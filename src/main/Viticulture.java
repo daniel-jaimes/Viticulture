@@ -1,6 +1,6 @@
-package Viticulture.main;
+package main;
 
-import Viticulture.manager.Controller;
+import manager.Controller;
 
 public class Viticulture {
     public static void main(String[] args) {

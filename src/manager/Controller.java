@@ -1,7 +1,6 @@
-package Viticulture.manager;
+package manager;
 
-
-import Viticulture.dao.HibernateSession;
+import dao.HibernateSession;
 import org.hibernate.SessionFactory;
 
 public class Controller {

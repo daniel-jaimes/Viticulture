@@ -1,17 +1,17 @@
-package Viticulture.model;
+package model;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Cellar")
-public class Cellar {
+@Table(name = "Campo")
+public class Field {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    private int idCellar;
-    @Column(name = "name")
-    private String name;
+    private int idField;
     @ManyToOne
     private List<Vid> vids;
+    @Column(name = "id_cellar")
+    private int idCellar;
 }

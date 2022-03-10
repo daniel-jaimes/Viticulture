@@ -1,4 +1,4 @@
-package Viticulture.model;
+package model;
 
 import javax.persistence.*;
 

@@ -1,6 +1,6 @@
-package Viticulture.model;
+package model;
 
-import Viticulture.util.VidType;
+import util.VidType;
 
 import javax.persistence.*;
 

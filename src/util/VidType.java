@@ -1,4 +1,4 @@
-package Viticulture.util;
+package util;
 
 public enum VidType {
     BLANCA, NEGRA
