@@ -12,6 +12,6 @@ public class Cellar {
     private int idCellar;
     @Column(name = "name")
     private String name;
-    @OneToMany
+    @OneToMany(mappedBy = "cellar", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vid> vids;
 }

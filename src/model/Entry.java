@@ -9,6 +9,14 @@ public class Entry {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "instrucciones")
+    @Column(name = "instruccion")
     private String instructions;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
 }

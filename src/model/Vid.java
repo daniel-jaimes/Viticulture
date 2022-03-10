@@ -15,4 +15,10 @@ public class Vid {
     private VidType type;
     @Column(name = "quantity")
     private int quantity;
+    @ManyToOne()
+    @JoinColumn(name = "idCellar", nullable = true, unique = true)
+    private Cellar cellar;
+    @ManyToOne()
+    @JoinColumn(name = "idField", nullable = true, unique = true)
+    private Field field;
 }
