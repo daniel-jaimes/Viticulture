@@ -35,4 +35,8 @@ public class Vid {
                 ", quantity=" + quantity +
                 '}';
     }
+
+    public void setCellar(Cellar cellar) {
+        this.cellar = cellar;
+    }
 }

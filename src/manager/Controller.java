@@ -74,8 +74,9 @@ public class Controller {
 
     private void moveVidsFromFieldToCellar() {
         System.out.println(lastFieldObtained);
+        lastFieldObtained.getVids().forEach(n -> n.setCellar(lastCellarObtained));
+        sessionHibernate.save(lastFieldObtained);
         lastCellarObtained.setVids(lastFieldObtained.getVids());
-        sessionHibernate.save(lastCellarObtained);
         System.out.println("Move Vids From Field to Cellar Successfullly");
     }
 
