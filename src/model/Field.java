@@ -1,21 +1,23 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "Field")
 public class Field {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
     private int idField;
-    @OneToMany(mappedBy = "field", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "field")
     private List<Vid> vids;
     @Column(name = "idCellar")
     private int idCellar;
 
     public Field(int idCellar) {
+        vids = new ArrayList<>();
         this.idCellar = idCellar;
     }
 
@@ -25,5 +27,18 @@ public class Field {
 
     public int getIdCellar() {
         return idCellar;
+    }
+
+    public List<Vid> getVids() {
+        return vids;
+    }
+
+    @Override
+    public String toString() {
+        return "Field{" +
+                "idField=" + idField +
+                ", vids=" + vids +
+                ", idCellar=" + idCellar +
+                '}';
     }
 }

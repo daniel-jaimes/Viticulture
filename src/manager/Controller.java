@@ -24,7 +24,13 @@ public class Controller {
 
         initSession();
         readInstructions();
+        printAllFields();
         endSession();
+    }
+
+    private void printAllFields() {
+        List<Field> fields = getAllData(Field.class);
+        fields.forEach(System.out::println);
     }
 
     private void readInstructions() {
@@ -49,13 +55,13 @@ public class Controller {
                     createCellar(action.get(0));
                     break;
                 case "C":
-                    asignCellarToField();
+                    asignIdCellarToField();
                     break;
                 case "V":
                     createVidAsignField(action);
                     break;
                 case "#":
-                    ferryVidsFromFieldToCellar();
+                    moveVidsFromFieldToCellar();
                     break;
             }
             transaction.commit();
@@ -66,20 +72,24 @@ public class Controller {
         }
     }
 
-    private void ferryVidsFromFieldToCellar() {
-        lastFieldObtained = sessionHibernate.
-                get(Field.class, lastFieldObtained.getIdField());
-        System.out.println("Ferry Vids From Field to Cellar Successfullly");
+    private void moveVidsFromFieldToCellar() {
+        System.out.println(lastFieldObtained);
+        lastCellarObtained.setVids(lastFieldObtained.getVids());
+        sessionHibernate.save(lastCellarObtained);
+        System.out.println("Move Vids From Field to Cellar Successfullly");
     }
 
     private void createVidAsignField(List<String> action) {
-        sessionHibernate.save(new Vid(action.get(0),
+        int idVid = (Integer) sessionHibernate.save(new Vid(action.get(0),
                 Integer.parseInt(action.get(1)),
                 lastFieldObtained));
+        Vid vid = sessionHibernate.get(Vid.class, idVid);
+        lastFieldObtained.getVids().add(vid);
+        sessionHibernate.save(lastFieldObtained);
         System.out.println("Vid Saved Successfully");
     }
 
-    private void asignCellarToField() {
+    private void asignIdCellarToField() {
         int idLastFieldSaved = (Integer) sessionHibernate
                 .save(new Field(lastCellarObtained.getId()));
         lastFieldObtained = sessionHibernate

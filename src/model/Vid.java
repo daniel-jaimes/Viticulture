@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "Vid")
 public class Vid {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
     private int id;
     @Column(name = "type")
@@ -26,5 +26,13 @@ public class Vid {
         this.type = VidType.valueOf(type.toUpperCase());
         this.quantity = quantity;
         this.field = field;
+    }
+
+    @Override
+    public String toString() {
+        return "Vid{" +
+                "type=" + type +
+                ", quantity=" + quantity +
+                '}';
     }
 }
