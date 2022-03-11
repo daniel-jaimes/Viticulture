@@ -1,6 +1,7 @@
 package manager;
 
 import dao.HibernateSession;
+import exceptions.ExecutionException;
 import model.Cellar;
 import model.Entry;
 import model.Field;
@@ -13,6 +14,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Controller {
     private Session sessionHibernate;
@@ -30,7 +34,12 @@ public class Controller {
 
     private void printAllFields() {
         List<Field> fields = getAllData(Field.class);
-        fields.forEach(System.out::println);
+        List<Cellar> cellars = getAllData(Cellar.class);
+        Map<Integer, Cellar> mapCellars = cellars.stream()
+                .collect(Collectors.toMap(Cellar::getId, Function.identity()));
+        fields.forEach(f -> {
+            System.out.println("Campo [idCampo=" + f.getIdField() + ", Vids=[" + f.getVids() + "], Bodega=[" + mapCellars.get(f.getIdCellar()) + "]]");
+        });
     }
 
     private void readInstructions() {
@@ -68,15 +77,18 @@ public class Controller {
         } catch (HibernateException e) {
             if (transaction != null)
                 transaction.rollback(); // Roll back if any exception occurs.
-            e.printStackTrace();
+            try {
+                throw new ExecutionException(ExecutionException.ERROR_DB);
+            } catch (ExecutionException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 
     private void moveVidsFromFieldToCellar() {
-        System.out.println(lastFieldObtained);
         lastFieldObtained.getVids().forEach(n -> n.setCellar(lastCellarObtained));
         sessionHibernate.save(lastFieldObtained);
-        lastCellarObtained.setVids(lastFieldObtained.getVids());
+        //
         System.out.println("Move Vids From Field to Cellar Successfullly");
     }
 

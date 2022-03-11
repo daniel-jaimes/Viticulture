@@ -20,7 +20,9 @@ public class Field {
         vids = new ArrayList<>();
         this.idCellar = idCellar;
     }
+    private Field(){
 
+    }
     public int getIdField() {
         return idField;
     }
@@ -35,10 +37,10 @@ public class Field {
 
     @Override
     public String toString() {
-        return "Field{" +
+        return "[" +
                 "idField=" + idField +
                 ", vids=" + vids +
-                ", idCellar=" + idCellar +
-                '}';
+                ", Cellar=" + idCellar +
+                ']';
     }
 }

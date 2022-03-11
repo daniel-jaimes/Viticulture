@@ -27,16 +27,21 @@ public class Vid {
         this.quantity = quantity;
         this.field = field;
     }
+    private Vid(){
 
-    @Override
-    public String toString() {
-        return "Vid{" +
-                "type=" + type +
-                ", quantity=" + quantity +
-                '}';
     }
+
 
     public void setCellar(Cellar cellar) {
         this.cellar = cellar;
+    }
+
+    @Override
+    public String toString() {
+        return "vid{" +
+                "id=" + id +
+                ", type=" + type +
+                ", quantity=" + quantity +
+                '}';
     }
 }

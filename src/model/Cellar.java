@@ -15,7 +15,9 @@ public class Cellar {
     private String name;
     @OneToMany(mappedBy = "cellar")
     private List<Vid> vids;
+    private Cellar(){
 
+    }
     public Cellar(String nameCellar) {
         vids = new ArrayList<>();
         this.name = nameCellar;
@@ -31,5 +33,14 @@ public class Cellar {
 
     public void setVids(List<Vid> vids) {
         this.vids = vids;
+    }
+
+    @Override
+    public String toString() {
+        return "[" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", vids=" + vids +
+                ']';
     }
 }
