@@ -12,6 +12,18 @@ public class Field {
     private int idField;
     @OneToMany(mappedBy = "field", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vid> vids;
-    @Column(name = "idCellar", unique = true)
+    @Column(name = "idCellar")
     private int idCellar;
+
+    public Field(int idCellar) {
+        this.idCellar = idCellar;
+    }
+
+    public int getIdField() {
+        return idField;
+    }
+
+    public int getIdCellar() {
+        return idCellar;
+    }
 }

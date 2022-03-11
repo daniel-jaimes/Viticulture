@@ -16,9 +16,15 @@ public class Vid {
     @Column(name = "quantity")
     private int quantity;
     @ManyToOne()
-    @JoinColumn(name = "idCellar", nullable = true, unique = true)
+    @JoinColumn(name = "idCellar")
     private Cellar cellar;
     @ManyToOne()
-    @JoinColumn(name = "idField", nullable = true, unique = true)
+    @JoinColumn(name = "idField")
     private Field field;
+
+    public Vid(String type, int quantity, Field field) {
+        this.type = VidType.valueOf(type.toUpperCase());
+        this.quantity = quantity;
+        this.field = field;
+    }
 }
